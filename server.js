@@ -40,8 +40,8 @@ app.use(express.json());
 // These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 // ================================================================================
 
-require("../FriendFinder/app/routing/apiRoutes")(app);
-require("../FriendFinder/app/routing/htmlRoutes")(app);
+require("./routing/apiRoutes")(app);
+require("./routing/htmlRoutes")(app);
 
 // =============================================================================
 // LISTENER
