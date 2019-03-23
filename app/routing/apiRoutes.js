@@ -47,14 +47,14 @@ module.exports = function (app) {
       console.log(friendsData[i]);
       totalDifference = 0;
 
-      for (var x = 0; x < friendsData.scores[i]; x++) {
+      for (var x = 0; x < friendsData[i].scores; x++) {
 
         totalDifference += Math.abs(parseInt(userScores[x]) - parseInt(friendsData[i].scores[x]));
 
         if (totalDifference <= bestMatch.friendDifference) {
 
-          bestMatch.name = friends[i].name;
-          bestMatch.photo = friends[i].photo;
+          bestMatch.name = friendsData[i].name;
+          bestMatch.photo = friendsData[i].photo;
           bestMatch.friendDifference = totalDifference;
         }
       }
