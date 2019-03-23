@@ -1,7 +1,7 @@
 var friends = [
 {
     name:"Peter Griffin",
-    photo:"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    photo:"https://ui-ex.com/images/guying-clipart-character-4.png",
     score:[
         5,
         3,
@@ -18,7 +18,7 @@ var friends = [
 
   {
     name:"Lois Griffin",
-    photo:"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    photo:"https://upload.wikimedia.org/wikipedia/en/a/a5/Lois_Griffin.png",
     score:[
         5,
         1,
@@ -35,7 +35,7 @@ var friends = [
 
   {
     name:"Stewie Griffin",
-    photo:"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    photo:"https://upload.wikimedia.org/wikipedia/en/0/02/Stewie_Griffin.png",
     score:[
         1,
         5,
@@ -52,7 +52,7 @@ var friends = [
 
   {
     name:"Chris Griffin",
-    photo:"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    photo:"https://upload.wikimedia.org/wikipedia/en/d/df/Chris_Griffin.png",
     score:[
         5,
         5,
@@ -69,7 +69,7 @@ var friends = [
 
   {
     name:"Glenn Quagmire",
-    photo:"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    photo:"https://upload.wikimedia.org/wikipedia/en/f/fe/Glenn_Quagmire.png",
     score:[
         3,
         4,
@@ -86,7 +86,7 @@ var friends = [
 
   {
     name:"Brian",
-    photo:"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    photo:"https://upload.wikimedia.org/wikipedia/en/1/12/Brian_Griffin.png",
     score:[
         3,
         4,

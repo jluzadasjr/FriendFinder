@@ -168,6 +168,20 @@
             </section>
         </section>
 
+<div id="resultsModal" class="modal fade" role="dialog">
+        <div class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title"></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                </div>
+              </div>
+            </div>
+</div>
 
         <div class="modal">
             <div class="modal-dialog">
@@ -212,6 +226,41 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript">
 
+   $("#submit").on("click", function () {
+       function validateForm() {
+           var valid = true;
+           $(".form-control").each(function() {
+               if ($(this).val() === "") {
+                   valid = false;
+               }
+           });
+           $(".chosen-select").each(function() {
+               if ($(this).val() === "") {
+                   valid = false;
+               }
+           })
+           return (valid); 
+       }
+       if (validateForm()) {
+           var userData = {
+               name: $("#name").val(),
+               photo: $("#photo").val(),
+               scores: [
+               $("#item1").val(),
+                    $("#item2").val(),
+                    $("#item3").val(),
+                    $("#item4").val(),
+                    $("#item5").val(),
+                    $("#item6").val(),
+                    $("#item7").val(),
+                    $("#item8").val(),
+                    $("#item9").val(),
+                    $("#item10").val()
+               ]
+           }
+       }
+   });
+
         var optionQ1 = $("#item1");
         $("#submit").on("click", function (event) {
             event.preventDefault();
@@ -234,6 +283,13 @@
 
             }
             console.log(userData);
+
+        var currentURL = window.location.origin;
+
+        $.post(currentURL + "/api/friends", userData, function(data) {
+            $("#resultsModal").modal("toggle"); 
+            alert("working");
+        })
 
             $.post("/api/friends", userData,
                 function (data) {
