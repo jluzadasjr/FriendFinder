@@ -99,6 +99,8 @@ var friends = [
         3,
         2
       ]
-  }
+  }, 
+  
 ];
+
 module.exports = friends;

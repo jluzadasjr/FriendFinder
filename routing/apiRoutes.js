@@ -1,4 +1,4 @@
-// ===============================================================================
+ // ===============================================================================
 // LOAD DATA
 // We are linking our routes to a series of "data" sources.
 // These data sources hold arrays of information on table-data, waitinglist, etc.
@@ -34,32 +34,32 @@ module.exports = function (app) {
       photo: "",
       friendDifference: 1000
     };
-    console.log(req.body);
+    console.log("request", req.body);
 
     var userData = req.body;
-    var userScores = userData.scores;
+    var userScores = userData.score;
 
     console.log(userScores);
 
-    var totalDifference = 0;
+    var totalDifference = 0; 
 
     for (var i = 0; i < friendsData.length; i++) {
       console.log(friendsData[i]);
       totalDifference = 0;
 
-      for (var x = 0; x < friendsData[i].scores; x++) {
-
-        totalDifference += Math.abs(parseInt(userScores[x]) - parseInt(friendsData[i].scores[x]));
-
+      for (var x = 0; x < friendsData[i].score.length; x++) {
+        // console.log("test"); 
+        totalDifference += Math.abs(parseInt(userScores[x]) - parseInt(friendsData[i].score[x]));
+        // console.log("Total Difference", totalDifference); 
         if (totalDifference <= bestMatch.friendDifference) {
 
           bestMatch.name = friendsData[i].name;
           bestMatch.photo = friendsData[i].photo;
           bestMatch.friendDifference = totalDifference;
         }
-      }
+      } 
     }
-
+    console.log("Best Match", bestMatch);
     friendsData.push(userData);
 
     res.json(bestMatch);
@@ -87,11 +87,11 @@ module.exports = function (app) {
   // I added this below code so you could clear out the table while working with the functionality.
   // Don"t worry about it!
 
-  app.post("/api/clear", function (req, res) {
-    // Empty out the arrays of data
-    friendsData.length = [];
-    friend.length = [];
+  // app.post("/api/clear", function (req, res) {
+  //   // Empty out the arrays of data
+  //   friendsData.length = [];
+  //   friend.length = [];
 
-    res.json({ ok: true });
-  });
+  //   res.json({ ok: true });
+  // })
 };

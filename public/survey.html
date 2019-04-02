@@ -168,29 +168,16 @@
             </section>
         </section>
 
-<div id="resultsModal" class="modal fade" role="dialog">
-        <div class="modal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title"></h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                </div>
-              </div>
-            </div>
-</div>
-
-        <div class="modal">
+        <div class="modal fade" id="resultsModal" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title"></h4>
+                        <h5 class="modal-title">Best Match</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                    <div class="modal-body text-center">
+                    <div class="modal-body">
+                        <h1 class="match-name"></h1>
+                        <img class="match-image">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -198,20 +185,22 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-danger btn-lg btn-block" id="submit">Submit</button>
-        <br>
-        <a href="../home">
-            <button type="button" class="btn btn-primary">
-                Return Home
-            </button>
-        </a>
-        <hr>
-        <footer class="footer">
-            <p>
-                <a href="/api/friends">API Friends List</a> | <a href="https://github.com/a-ashbeck/FriendFinder">GitHub
-                    Repo</a>
-            </p>
-        </footer>
+    </div>
+
+    <button type="submit" class="btn btn-danger btn-lg btn-block" id="submit">Submit</button>
+    <br>
+    <a href="../home">
+        <button type="button" class="btn btn-primary">
+            Return Home
+        </button>
+    </a>
+    <hr>
+    <footer class="footer">
+        <p>
+            <a href="/api/friends">API Friends List</a> | <a href="https://github.com/a-ashbeck/FriendFinder">GitHub
+                Repo</a>
+        </p>
+    </footer>
     </div>
 
 
@@ -226,76 +215,76 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript">
 
-   $("#submit").on("click", function () {
-       function validateForm() {
-           var valid = true;
-           $(".form-control").each(function() {
-               if ($(this).val() === "") {
-                   valid = false;
-               }
-           });
-           $(".chosen-select").each(function() {
-               if ($(this).val() === "") {
-                   valid = false;
-               }
-           })
-           return (valid); 
-       }
-       if (validateForm()) {
-           var userData = {
-               name: $("#name").val(),
-               photo: $("#photo").val(),
-               scores: [
-               $("#item1").val(),
-                    $("#item2").val(),
-                    $("#item3").val(),
-                    $("#item4").val(),
-                    $("#item5").val(),
-                    $("#item6").val(),
-                    $("#item7").val(),
-                    $("#item8").val(),
-                    $("#item9").val(),
-                    $("#item10").val()
-               ]
-           }
-       }
-   });
-
-        var optionQ1 = $("#item1");
-        $("#submit").on("click", function (event) {
-            event.preventDefault();
-
-            var userData = {
-                scores: [
-                    $("#item1").val(),
-                    $("#item2").val(),
-                    $("#item3").val(),
-                    $("#item4").val(),
-                    $("#item5").val(),
-                    $("#item6").val(),
-                    $("#item7").val(),
-                    $("#item8").val(),
-                    $("#item9").val(),
-                    $("#item10").val()
-                ],
-                name: $("#name").val(),
-                photo: $("#photo").val()
-
-            }
-            console.log(userData);
-
-        var currentURL = window.location.origin;
-
-        $.post(currentURL + "/api/friends", userData, function(data) {
-            $("#resultsModal").modal("toggle"); 
-            alert("working");
-        })
-
-            $.post("/api/friends", userData,
-                function (data) {
-                    console.log(data)
+        $("#submit").on("click", function () {
+            function validateForm() {
+                var valid = true;
+                $(".form-control").each(function () {
+                    if ($(this).val() === "") {
+                        valid = false;
+                    }
+                });
+                $(".chosen-select").each(function () {
+                    if ($(this).val() === "") {
+                        valid = false;
+                    }
                 })
-        })
+                return (valid);
+            }
+            if (validateForm()) {
+                var userData = {
+                    name: $("#name").val(),
+                    photo: $("#photo").val(),
+                    score: [
+                        $("#item1").val(),
+                        $("#item2").val(),
+                        $("#item3").val(),
+                        $("#item4").val(),
+                        $("#item5").val(),
+                        $("#item6").val(),
+                        $("#item7").val(),
+                        $("#item8").val(),
+                        $("#item9").val(),
+                        $("#item10").val()
+                    ]
+                };
+
+                // var optionQ1 = $("#item1");
+                // $("#submit").on("click", function (event) {
+                //     event.preventDefault();
+
+                //     var userData = {
+                //         scores: [
+                //             $("#item1").val(),
+                //             $("#item2").val(),
+                //             $("#item3").val(),
+                //             $("#item4").val(),
+                //             $("#item5").val(),
+                //             $("#item6").val(),
+                //             $("#item7").val(),
+                //             $("#item8").val(),
+                //             $("#item9").val(),
+                //             $("#item10").val()
+                //         ],
+                //         name: $("#name").val(),
+                //         photo: $("#photo").val()
+
+                //     }
+                //     console.log(userData);
+
+                var currentURL = window.location.origin;
+
+                $.post(currentURL + "/api/friends", userData, function (data) {
+                    console.log(data);
+                    alert("working");
+                    $(".match-name").text(data.name);
+                    $(".match-image").attr("src", data.photo);
+                    $("#resultsModal").modal("toggle");
+                });
+            } else {
+                alert("Please fill out all fields in order to complete!")
+            }
+            return false;
+        });
     </script>
 </body>
 
